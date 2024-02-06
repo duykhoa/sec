@@ -4,6 +4,12 @@ Authorization: {{ authorization_token }}
 Accept: application/json
 Content-Type: application/json
 
+### get version with wrong credentials
+GET {{ apiUrl }}/versions
+Authorization: {{ wrong_credentials_authorization_token }}
+Accept: application/json
+Content-Type: application/json
+
 ### create test user
 POST {{ apiUrl }}/create-test-user
 Accept: application/json

@@ -29,11 +29,13 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .builder()
                 .id(account.getId())
                 .email(account.getEmail())
+                .password(account.getEncodedPassword())
                 .enabled(account.getEnabled())
                 .credentialsExpiredAt(account.getCredentialsExpiredAt())
                 .expiredAt(account.getExpiredAt())
                 .lockedAt(account.getLockedAt())
                 .createdAt(account.getCreatedAt())
+                .updatedAt(account.getUpdatedAt())
                 .build();
     }
 }

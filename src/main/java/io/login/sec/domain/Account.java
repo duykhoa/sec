@@ -7,6 +7,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Instant;
 
@@ -57,4 +59,10 @@ public class Account {
 
     @Column(name = "enabled")
     private Boolean enabled;
+
+    @PrePersist
+    public void setEncodedPassword() {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        this.encodedPassword = encoder.encode(password);
+    }
 }
