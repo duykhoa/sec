@@ -1,5 +1,10 @@
-# Without Authorization Header, this api returns 401
-GET {{apiUrl}}/versions
+### get version
+GET {{ apiUrl }}/versions
 Authorization: {{ authorization_token }}
+Accept: application/json
+Content-Type: application/json
+
+### create test user
+POST {{ apiUrl }}/create-test-user
 Accept: application/json
 Content-Type: application/json
