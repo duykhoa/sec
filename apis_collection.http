@@ -1,0 +1,5 @@
+# Without Authorization Header, this api returns 401
+GET {{apiUrl}}/versions
+Authorization: {{ authorization_token }}
+Accept: application/json
+Content-Type: application/json

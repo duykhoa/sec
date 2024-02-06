@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseMigrationSettings" lastSelectedDirectory="$PROJECT_DIR$/src/main/resources" />
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="sec.main" name="domain" defaultSearchScope="Project">
+        <packages>
+          <package value="io.login.sec.domain" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit moduleName="sec.main" name="Default">
+        <packages>
+          <package value="io.login.sec" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
