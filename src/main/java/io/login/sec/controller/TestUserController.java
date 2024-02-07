@@ -2,8 +2,6 @@ package io.login.sec.controller;
 
 import io.login.sec.domain.Account;
 import io.login.sec.domain.AccountRepository;
-import io.login.sec.domain.UserDetailsImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
