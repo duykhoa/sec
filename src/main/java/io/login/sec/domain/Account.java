@@ -6,11 +6,15 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuperBuilder
 @AllArgsConstructor
@@ -18,8 +22,8 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "account", indexes = {
-        @Index(name = "idx_account_email", columnList = "email")
+@Table(name = "accounts", indexes = {
+        @Index(name = "idx_accounts_email", columnList = "email")
 })
 public class Account {
     @Id
@@ -59,6 +63,13 @@ public class Account {
 
     @Column(name = "enabled")
     private Boolean enabled;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "accounts_roles",
+            joinColumns = @JoinColumn(name = "account_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @PrePersist
     public void setEncodedPassword() {

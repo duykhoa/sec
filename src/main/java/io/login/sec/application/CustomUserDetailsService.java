@@ -2,11 +2,16 @@ package io.login.sec.application;
 
 import io.login.sec.domain.Account;
 import io.login.sec.domain.AccountRepository;
+import io.login.sec.domain.Role;
 import io.login.sec.domain.UserDetailsImpl;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -25,7 +30,10 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("account not found");
         }
 
-        return UserDetailsImpl
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+                .createAuthorityList(account.getRoles().stream().map(Role::getName).toList());
+
+        UserDetailsImpl userDetails = UserDetailsImpl
                 .builder()
                 .id(account.getId())
                 .email(account.getEmail())
@@ -36,6 +44,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .lockedAt(account.getLockedAt())
                 .createdAt(account.getCreatedAt())
                 .updatedAt(account.getUpdatedAt())
+                .authorityList(grantedAuthorities)
                 .build();
+        return userDetails;
     }
 }

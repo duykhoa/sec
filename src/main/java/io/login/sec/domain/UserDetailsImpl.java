@@ -12,13 +12,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @SuperBuilder
 @AllArgsConstructor
 public class UserDetailsImpl extends Account implements UserDetails {
+    private List<GrantedAuthority> authorityList;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.unmodifiableList(AuthorityUtils.createAuthorityList("ROLE_USER"));
+        return Collections.unmodifiableList(authorityList);
     }
 
     @Override
