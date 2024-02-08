@@ -37,6 +37,7 @@ public class Account {
 
     @JsonIgnore
     @NotNull
+    @Transient
     private String password;
 
     @JsonIgnore

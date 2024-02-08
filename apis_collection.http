@@ -1,3 +1,44 @@
+### Run this request first to setup testing data
+POST {{ apiUrl }}/demo/superadmin/run-me-first
+Authorization: {{ authorization_token }}
+Accept: application/json
+Content-Type: application/json
+
+### /admin/dashboard
+GET {{ apiUrl }}/demo/admin/dashboard
+Authorization: Basic admin@email.com password
+Accept: application/json
+Content-Type: application/json
+
+### /user/dashboard
+GET {{ apiUrl }}/demo/user/dashboard
+Authorization: Basic user@email.com password
+Accept: application/json
+Content-Type: application/json
+
+### /user/dashboard with multi roles 1
+GET {{ apiUrl }}/demo/admin/dashboard
+Authorization: Basic multiroles1@email.com password
+Accept: application/json
+Content-Type: application/json
+
+### /user/dashboard with multi roles 1 result 403
+GET {{ apiUrl }}/demo/superadmin/dashboard
+Authorization: Basic multiroles1@email.com password
+Accept: application/json
+Content-Type: application/json
+
+### /user/dashboard with multi roles 2
+GET {{ apiUrl }}/demo/user/dashboard
+Authorization: Basic multiroles2@email.com password
+Accept: application/json
+Content-Type: application/json
+
+### /default no authorization required
+GET {{ apiUrl }}/demo/default
+Accept: application/json
+Content-Type: application/json
+
 ### get version
 GET {{ apiUrl }}/versions
 Authorization: {{ authorization_token }}
@@ -7,10 +48,5 @@ Content-Type: application/json
 ### get version with wrong credentials
 GET {{ apiUrl }}/versions
 Authorization: {{ wrong_credentials_authorization_token }}
-Accept: application/json
-Content-Type: application/json
-
-### create test user
-POST {{ apiUrl }}/create-test-user
 Accept: application/json
 Content-Type: application/json
